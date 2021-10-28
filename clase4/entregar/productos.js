@@ -34,19 +34,21 @@ routerProductos.get('/:num', (req, res)=>{
 })
 
 routerProductos.post('/', (req, res)=>{
+    let objeto = req.body
+    objeto.id = productos.length + 1
     productos.push(req.body)
     res.json(req.body)
 })
 
 routerProductos.put('/:id', (req,res)=>{
-        const {idNuevo} = req.body
+        const {nombre, precio, thumbnail} = req.body
         const {id} = req.params
         const idAnterior = productos[parseInt(id)-1]
-        productos[parseInt(id)-1] = idNuevo
-        res.json({actualizada: idNuevo, anterior: idAnterior})
+        productos[parseInt(id)-1] = {nombre: nombre, precio: precio, thumbnail: thumbnail, id: id}
+        res.json({actualizada: productos[parseInt(id)-1], anterior: idAnterior})
 })
 
-routerProductos.delete('/api/palabras/:id', (req, res)=>{
+routerProductos.delete('/:id', (req, res)=>{
     const {id} = req.params
     const producto = productos.splice(parseInt(id)-1,1)
     res.json({borrada: producto})
