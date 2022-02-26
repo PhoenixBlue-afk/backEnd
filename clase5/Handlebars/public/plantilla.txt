@@ -1,6 +1,0 @@
-<h1> Datos Personales </h1>
-<ul>
-    <li>{{nombre}}</li>
-    <li>{{precio}}</li>
-    <li>{{thumbnail}}</li>
-</ul>
